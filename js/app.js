@@ -133,7 +133,25 @@ function renderSlotStep() {
   });
 }
 
+function parseGradeRange(gradeLevelsStr) {
+  const match = gradeLevelsStr.match(/(K|\d+)\s*-\s*(\d+)/i);
+  if (!match) return null;
+  const min = match[1].toUpperCase() === "K" ? 0 : parseInt(match[1], 10);
+  const max = parseInt(match[2], 10);
+  return { min, max };
+}
+
+function gradeOptionsHtml(range) {
+  const options = [];
+  for (let g = range.min; g <= range.max; g++) {
+    const label = g === 0 ? "Kindergarten" : `Grade ${g}`;
+    options.push(`<option value="${g}">${label}</option>`);
+  }
+  return options.join("");
+}
+
 function renderFormStep() {
+  const range = parseGradeRange(currentTutor.gradeLevels);
   modalBody.innerHTML = `
     <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
     <h3>Book ${currentTutor.name}</h3>
@@ -146,7 +164,11 @@ function renderFormStep() {
       <label for="studentName">Student first name</label>
       <input type="text" id="studentName" required>
       <label for="studentGrade">Student grade</label>
-      <input type="text" id="studentGrade" required>
+      <select id="studentGrade" required>
+        <option value="" disabled selected>Select grade&hellip;</option>
+        ${gradeOptionsHtml(range)}
+      </select>
+      <p class="tutor-meta" style="margin-top:4px;">${currentTutor.name} teaches ${currentTutor.gradeLevels}.</p>
       <button type="submit" class="btn btn-primary" style="width:100%; margin-top:18px;">Confirm booking</button>
     </form>
   `;
@@ -154,11 +176,13 @@ function renderFormStep() {
   document.getElementById("modal-close-btn").addEventListener("click", closeModal);
   document.getElementById("booking-form").addEventListener("submit", (e) => {
     e.preventDefault();
+    const studentGrade = document.getElementById("studentGrade").value;
     markSlotBooked(currentSlot.id);
     track("booking_completed", {
       tutor: currentTutor.name,
       subject: currentTutor.subjects[0],
-      slot: currentSlot.label
+      slot: currentSlot.label,
+      student_grade: studentGrade
     });
     renderConfirmationStep();
     renderGrid();
