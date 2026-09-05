@@ -37,11 +37,11 @@ SUBJECTS = {
 
 # tutor -> (min grade, max grade), 0 = Kindergarten. Mirrors js/data.js.
 TUTOR_GRADE_RANGE = {
-    "Maria Chen": (6, 12),
-    "James Okafor": (8, 12),
-    "Liam Patel": (6, 12),
+    "Maria Chen": (0, 12),
+    "James Okafor": (0, 12),
+    "Liam Patel": (0, 12),
     "Sofia Ramirez": (0, 12),
-    "Ava Thompson": (8, 12),
+    "Ava Thompson": (0, 12),
 }
 
 NUM_SESSIONS = 260

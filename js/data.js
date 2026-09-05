@@ -8,7 +8,7 @@ const TUTORS = [
     name: "Maria Chen",
     photo: "https://i.pravatar.cc/200?img=47",
     subjects: ["Math"],
-    gradeLevels: "Grades 6-12",
+    gradeLevels: "Grades K-12",
     hourlyRate: 40,
     bio: "Algebra through Calculus. Patient with students who feel behind.",
     slots: [
@@ -23,7 +23,7 @@ const TUTORS = [
     name: "James Okafor",
     photo: "https://i.pravatar.cc/200?img=12",
     subjects: ["Science"],
-    gradeLevels: "Grades 8-12",
+    gradeLevels: "Grades K-12",
     hourlyRate: 45,
     bio: "Biology, Chemistry, and Physics. Focus on building intuition, not just formulas.",
     slots: [
@@ -51,7 +51,7 @@ const TUTORS = [
     name: "Liam Patel",
     photo: "https://i.pravatar.cc/200?img=51",
     subjects: ["English"],
-    gradeLevels: "Grades 6-12",
+    gradeLevels: "Grades K-12",
     hourlyRate: 35,
     bio: "Essay writing, reading comprehension, and test prep.",
     slots: [
@@ -65,7 +65,7 @@ const TUTORS = [
     name: "Ava Thompson",
     photo: "https://i.pravatar.cc/200?img=25",
     subjects: ["Coding"],
-    gradeLevels: "Grades 8-12",
+    gradeLevels: "Grades K-12",
     hourlyRate: 50,
     bio: "Intro Python and web development for curious beginners.",
     slots: [
