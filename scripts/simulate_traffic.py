@@ -35,6 +35,15 @@ SUBJECTS = {
     "Coding": (10, ["Ava Thompson"]),
 }
 
+# tutor -> (min grade, max grade), 0 = Kindergarten. Mirrors js/data.js.
+TUTOR_GRADE_RANGE = {
+    "Maria Chen": (6, 12),
+    "James Okafor": (8, 12),
+    "Liam Patel": (6, 12),
+    "Sofia Ramirez": (0, 12),
+    "Ava Thompson": (8, 12),
+}
+
 NUM_SESSIONS = 260
 DAYS_BACK = 14
 
@@ -83,7 +92,18 @@ def build_session_events():
 
                 # of those, most but not all complete
                 if random.random() < 0.58:
-                    add("booking_completed", {"tutor": tutor, "subject": subject, "slot": "sample-slot"}, 90)
+                    grade_min, grade_max = TUTOR_GRADE_RANGE[tutor]
+                    student_grade = random.randint(grade_min, grade_max)
+                    add(
+                        "booking_completed",
+                        {
+                            "tutor": tutor,
+                            "subject": subject,
+                            "slot": "sample-slot",
+                            "student_grade": student_grade,
+                        },
+                        90,
+                    )
 
     return events
 
